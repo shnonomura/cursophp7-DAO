@@ -12,7 +12,7 @@ class Usuario {
 	}
 	
 	public function setIdusuario($value){
-		$this.idusuario = $value
+		$this->idusuario = $value;
 	}
 	
 		public function getDeslogin(){
@@ -20,21 +20,21 @@ class Usuario {
 	}
 	
 	public function setDeslogin($value){
-		$this.deslogin = $value
+		$this->deslogin = $value;
 	}
 		public function getDessenha(){
 		return $this->dessenha;
 	}
 	
 	public function setDessenha($value){
-		$this.dessenha = $value
+		$this->dessenha = $value;
 	}
 		public function getDtcadastro(){
 		return $this->dtcadastro;
 	}
 	
 	public function setDtcadastro($value){
-		$this.dtcadastro = $value
+		$this->dtcadastro = $value;
 	}
 
 	// carregar os dados do banco para um objeto
@@ -46,16 +46,25 @@ class Usuario {
 			$row = $results[0];
 			
 			$this->setIdusuario($row['idusuario']);
-			$this->setDeslogin($row['deslogin]);
-			$this->setDessenha($row['dessenha]);
-			$this->setDtcadastro(new DateTime($row['dtcadastro]));
+			$this->setDeslogin($row['deslogin']);
+			$this->setDessenha($row['dessenha']);
+			$this->setDtcadastro(new DateTime($row['dtcadastro']));
 		}
 		
 	}
-
-
-}
-
+	
+	public function __toString(){
+	
+		return json_encode(array(
+			"idusuario"=>$this->getIdusuario(),
+			"deslogin"=>$this->getDeslogin(),
+			"dessenha"=>$this->getDessenha(),
+			"dtcadastro"=>$this->getDtcadastro()->format("d/m/y H:i:s")
+		));
+			
+	}
+		
+}	
 
 
 ?>
